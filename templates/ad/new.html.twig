@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'une annonce
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">Créer une nouvelle annonce</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-secondary">
+                    <h2>Informations générales</h2>
+                    <hr>
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.price) }}
+                </div>
+                <div class="col alert alert-secondary">
+                    <h2>Détails de l'annonce</h2>
+                    <hr>
+                    {{ form_row(form.content) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-secondary">
+                    <h2>Images de l'annonce</h2>
+                    <hr>
+                    {{ form_row(form.coverImage) }}
+                </div>
+                <div class="alert alert-secondary">
+                    <h2>Catégorie de l'annonce</h2>
+                    <hr>
+                    {{ form_row(form.category) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <p>Vous êtes sur le point de créer votre annonce !</p>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check"></i>
+                Créer votre annonce
+            </button>
+        </div>
+        
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

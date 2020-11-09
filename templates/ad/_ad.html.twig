@@ -1,0 +1,37 @@
+{% set url = path('ads_show', {'slug': ad.slug}) %}
+    <div class="col-md-4">
+        <div class="card bg-light mb-3">
+            <div class="card-header text-center">
+                {{ ad.category.title }}, <strong>{{ ad.price }} Points / heure </strong> <br>
+                {% if ad.comments|length > 0 %}
+                    {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
+                {% else %}
+                    <small>Pas encore noté</small>
+                {% endif %}
+            </div>
+
+            <a href="{{ url }}">
+                <img src="{{ ad.coverImage }}" alt="Image de l'utilisateur" style="height: 200px; width: 100%; display: block">
+            </a>
+
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{{ url }}">
+                        {{ ad.title }}
+                    </a>
+                </h4>
+                <p class="card-text">
+                    {{ ad.content | raw }}
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{{ url }}" class="btn btn-primary float">En savoir plus !</a>
+                    </div>
+                    <div class="col-6">
+                        {% if app.user and app.user == ad.author %}
+                            <a href="{{ path('app_ad_edit', {'slug': ad.slug}) }}" class="btn btn-primary">Modifier</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

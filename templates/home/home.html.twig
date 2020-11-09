@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le meilleur réseau d'entraides entre particulier !{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron mt-3">
+        <h1 class="display-3">Bienvenue sur MonSite</h1>
+        <p class="lead">Nous mettons en relations les utilisateurs qui veulent profiter d'opportunité et gagner de l'argent en proposant leur service !</p>
+        <hr class="my-4">
+        <p>Vous avez besoin d'un service ? Et vous voulez savoir si une personne est disponible autour de vous ?</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ path('ads_index') }}" role="button">Voir nos annonces !</a>
+        </p>
+    </div>
+
+    <h2 class="h1 my-5">Nos 3 dernières annonces</h2>
+
+    <div class="row">
+        {% for data in ads %}
+            {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
+        {% endfor %}
+    </div>
+
+    <h2 class="h1 my-5">Nos utilisateurs Star</h2>
+
+    <div class="row">
+        {% for data in users %}
+        <div class="col">
+            <div class="card border-secondary mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">{{data.user.fullName}}</h4>
+
+                    <hr>
+
+                    <div class="card-text">
+                        <img src="{{data.user.picture}}" alt="Avatar de {{data.user.fullName}}" class="avatar float-left mr-3">
+                        <p>{{data.user.introduction}}</p>
+                        <a href="{{path('user_show', {'slug': data.user.slug})}}" class="btn btn-success float-right">En savoir plus!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

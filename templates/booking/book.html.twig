@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réserver l'annonce{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Réservez pour l'annonce : <em>{{ ad.title }}</em></h1>
+    <p>Vous êtes sur le point de venir en aide à <strong>{{ ad.author.fullName}}</strong>, Proposez lui une date !</p>
+
+    {{ form_start(form) }}
+    <div class="alert alert-light">
+        <h4>Choississez une date</h4>
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.startDate) }}
+            </div>
+        </div>
+    </div>
+
+    <h4>Montant de la préstation : <span id="amount">{{ad.price}}</span> Points / heure</h4>
+    <br>
+   
+
+    <h2>vous avez un commentaire ou une demande particulière ?</h2>
+    {{ form_row(form.comment) }}
+
+    <button type="submit" class="btn btn-success">Je propose mon aide !</button>
+
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}
